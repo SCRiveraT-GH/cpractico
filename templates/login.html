@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block header %}
+
+        <h1>{% block title %}Inicio de Sesión{% endblock %}</h1>
+        
+{% endblock %}
+
+{% block contenido %}
+    
+    <center>            
+        <form action="{{ url_for('login') }}"  method="post" name="formRegistro" onsubmit="validar_formulario();"  >
+       
+            <div>
+                {{ form.usuario.label }}
+                {{ form.usuario }}
+                {% if form.usuario.errors %}
+                    <ul class=errors>
+                        {% for error in form.usuario.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+          
+            <div>                    
+                {{ form.password.label }}
+                {{ form.password }}
+                <img src="{{ url_for('static', filename='img/view.png') }}" alt="Ojito"  onmouseover="mostrarPassword();"  onmouseout="ocultarPassword();">
+            </div>      
+            
+            <div>                                    
+                {{ form.recordar }}
+                {{ form.recordar.label }}
+            </div>  
+                           
+            <div>
+                {{ form.enviar }}                    
+            </div>
+            <br>
+            
+        </form>
+        
+    </center>
+    
+{% endblock %}

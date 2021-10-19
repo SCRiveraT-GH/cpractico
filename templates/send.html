@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block header %}
+
+        <h1>{% block title %}Enviar mensaje{% endblock %}</h1>
+        
+{% endblock %}
+
+{% block contenido %}
+    
+    <center>            
+        <form action="{{ url_for('send') }}"  method="post" name="formRegistro" onsubmit="validar_formulario();"  >             
+           
+            <div>
+                {{ form.para.label }}
+                {{ form.para }}
+                {% if form.para.errors %}
+                    <ul class=errors>
+                        {% for error in form.para.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <div>
+                {{ form.asunto.label }}
+                {{ form.asunto }}
+                {% if form.asunto.errors %}
+                    <ul class=errors>
+                        {% for error in form.asunto.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <div>
+                {{ form.mensaje.label }}
+                {{ form.mensaje }}
+                {% if form.mensaje.errors %}
+                    <ul class=errors>
+                        {% for error in form.mensaje.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+                           
+            <div>
+                {{ form.enviar }}                    
+            </div>
+            <br>
+            
+        </form>
+        
+    </center>
+    
+{% endblock %}

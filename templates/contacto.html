@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block header %}
+
+        <h1>{% block title %}Contacto{% endblock %}</h1>
+        
+{% endblock %}
+
+{% block contenido %}
+    
+    <center>            
+
+        <form action="/contacto"  method="post" >
+            {{ form.nombre.label }} 
+            {{ form.nombre }}
+            <br>            
+            {{ form.email.label }} 
+            {{ form.email }}
+            <br>            
+            {{ form.mensaje.label }} 
+            {{ form.mensaje }}
+            <!--
+            <br>
+            {{ form.operador.label }} 
+            {{ form.operador }}
+            -->
+            <br>
+            {{ form.enviar }}
+        </form>
+        
+    </center>
+    
+{% endblock %}

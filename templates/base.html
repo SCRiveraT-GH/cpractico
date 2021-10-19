@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+                
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        {% if titulo %}
+            <title>{{ titulo }} - Misión TIC</title>
+        {% else %}
+            <title>Misión TIC</title>
+        {% endif %}
+
+        <script src="{{ url_for('static', filename='js/validacion.js' ) }}">  </script>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css' ) }}" type="text/css">
+    
+    </head>
+
+    <body>
+        
+        <div>Misión TIC:              
+            {% if g.user %}  
+                <a class="action" href="{{ url_for('downloadpdf') }}">Descargar doc PDF</a>
+                <a class="action" href="{{ url_for('downloadimage') }}">Descargar imagen</a>
+                {{ g.user[2] }}
+                <a href="/logout">Cerrar sesión</a>
+            {% else %}
+                <a href="/login">Iniciar Sesión</a>
+                <a href="/registro">Registrarse</a>                
+            {% endif %}
+            <a href="/contacto">Contáctenos</a>              
+        </div>
+        <hr>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <header>
+            {% block header %}
+
+            {% endblock %}
+        </header>
+
+        {% block contenido %}
+        
+        <!-- AQUÍ VA EL CONTENIDO DE LAS PÁGINAS HIJAS -->
+        
+        {% endblock %}
+           
+                                  
+    </body>
+</html>
+
+
+
+
+
+        
+  
